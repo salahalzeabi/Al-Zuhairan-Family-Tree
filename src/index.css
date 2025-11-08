@@ -1,0 +1,234 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Aref+Ruqaa+Ink:wght@400;700&display=swap');
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+  text-align: right;
+  background-color: #0f172a; /* fallback */
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+
+
+
+
+
+/* src/index.css */
+
+@font-face {
+  font-family: 'DecoThuluth';
+  src: url('/assets/fonts/arfonts-decotype-thuluth-ii.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+@font-face {
+  font-family: 'DiwaniBent';
+  src: url('/assets/fonts/arfonts-diwani-bent.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+@font-face {
+  font-family: 'JassminTypo';
+  src: url('/assets/fonts/arfonts-jassmin-typo.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+
+
+.font-title {
+  font-family: 'MyDiwani', 'Cairo', sans-serif;
+  font-weight: 400; 
+}
+
+
+
+.icon
+{
+  margin-left: -14px;
+
+}
+
+
+.tree-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+
+:root {
+    --conn-gap: 2rem;  
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 84% 4.9%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 84% 4.9%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
+}
+
+/* Scrollbar */
+.overflow-y-auto::-webkit-scrollbar{ width:6px; }
+.overflow-y-auto::-webkit-scrollbar-track{ background:rgba(255,255,255,0.1); border-radius:3px; }
+.overflow-y-auto::-webkit-scrollbar-thumb{ background:rgba(212,175,55,0.7); border-radius:3px; }
+.overflow-y-auto::-webkit-scrollbar-thumb:hover{ background:rgba(212,175,55,1); }
+
+
+/* Scrollbar style — نفس الشكل في App */
+.tree-viewport {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.35) rgba(255,255,255,.08);
+}
+
+/* WebKit (Chrome/Edge/Safari) */
+.tree-viewport::-webkit-scrollbar {
+  width: 10px;    /* عمودي */
+  height: 10px;   /* أفقي */
+}
+
+.tree-viewport::-webkit-scrollbar-track {
+  background: rgba(255,255,255,.08);
+  border-radius: 9999px;
+}
+
+.tree-viewport::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,.35);
+  border-radius: 9999px;
+  border: 2px solid transparent; /* يعطي سماكة جميلة */
+  background-clip: padding-box;
+}
+
+.tree-viewport::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,.55);
+}
+
+
+/* ===================== Tree connector lines (no gaps) ===================== */
+
+.children-container{
+  --line-color: #d4af37;
+ 
+
+  position: relative;
+  padding-top: var(--conn-gap);     
+  
+
+}
+
+
+.children-container::before{
+  content: '';
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: var(--conn-gap);
+  background-color: var(--line-color);
+}
+
+
+.child-node{ position: relative; }
+
+
+.child-node::before{
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: var(--conn-gap);
+  background-color: var(--line-color);
+}
+
+
+.child-node::after{
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  height: 2px;
+  background-color: var(--line-color);
+  transform: translateY(calc(-1 * var(--conn-gap)));
+}
+
+
+.child-node:first-child::after{
+  left: 50%;
+  width: calc(50% + var(--sibling-gap) / 2);
+}
+
+
+.child-node:last-child::after{
+  right: 50%;
+  width: calc(50% + var(--sibling-gap) / 2);
+}
+
+
+.child-node:not(:first-child):not(:last-child)::after{
+  left: calc(-1 * var(--sibling-gap) / 2);
+  width: calc(100% + var(--sibling-gap));
+}
+
+
+.child-node:first-child:last-child::after{ display: none; }
+/* ========================================================================== */
+
+
+.tree-root{ direction: ltr; }
+.tree-root .person-card{ direction: rtl; text-align: right; }
+
+

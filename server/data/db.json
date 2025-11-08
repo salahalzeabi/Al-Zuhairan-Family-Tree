@@ -1,0 +1,117 @@
+{
+  "members": [
+    {
+      "id": "55da89c9-b178-479c-89fb-972bf098e763",
+      "name": "عبدالعزيز",
+      "image_url": "/assets/members/default.svg",
+      "parent_id": null,
+      "created_at": "2025-10-17T16:07:00.045Z"
+    }
+  ],
+  "settings": {
+    "background": "/uploads/1760717026297-bsowz0-1755792991753-nruj6l-b26.jpg"
+  },
+  "auth": {
+    "users": [
+      {
+        "id": "admin-local",
+        "email": "salahalzeabi@gmail.com",
+        "username": "admin",
+        "passwordHash": "$2b$10$UTNEhthMbnSi.RkFYJR3TOozwfw2U/dwj/6HFz9gWQUECtCDrNlI6",
+        "created_at": "2025-10-17T16:49:15.484Z"
+      }
+    ],
+    "resetTokens": [
+      {
+        "token": "5781ccf5-ec9d-47af-93e9-c94d7ae7843c",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760725733674
+      },
+      {
+        "token": "fc87ffa3-3c9f-46d2-9f15-edac6f4727b2",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760725735464
+      },
+      {
+        "token": "3304fe98-6396-4b40-9f87-dc6d5df09ac7",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760725863177
+      },
+      {
+        "token": "6dfaddf6-eb56-4b2a-9962-8ec3b68449d3",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760725864817
+      },
+      {
+        "token": "71b7abfd-51a5-4730-a393-7b2b71e0a544",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760725876890
+      },
+      {
+        "token": "c3109f01-eb37-4e58-8ee9-c69bf565eb03",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760726473664
+      },
+      {
+        "token": "1a6b2001-6cc8-47ce-9f94-9de71b37cd75",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760726475210
+      },
+      {
+        "token": "b54894ff-eda8-4b72-a80d-51cfc138aa3a",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760726477126
+      },
+      {
+        "token": "912dd95c-83b4-485a-8f5a-f42cfe6ac029",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760726489927
+      },
+      {
+        "token": "2ce4d9e0-61dc-41d9-a564-e27057e70cc5",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760726496969
+      },
+      {
+        "token": "9e670629-cce2-4c8f-b9c7-ece228f0fad0",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760726754945
+      },
+      {
+        "token": "18c2f238-b3a4-4994-bb5a-dee4cb34d113",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760726929630
+      },
+      {
+        "token": "f3191a6a-2499-42c7-ba4c-a476a8c6fb81",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760726931336
+      },
+      {
+        "token": "392a9d2d-342b-46f8-9995-5734e13b98a2",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760727369905
+      },
+      {
+        "token": "d48703fe-38fd-45f2-bd98-d5638a4c912e",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760727372033
+      },
+      {
+        "token": "37363edc-9b16-433f-bee7-a616d53048ef",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760727996308
+      },
+      {
+        "token": "046b7415-b48a-4082-bcc6-92aab9dc3262",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760867693021
+      },
+      {
+        "token": "c62376e7-65e6-4065-aab4-889d8d76b576",
+        "email": "salahalzeabi@gmail.com",
+        "expiresAt": 1760867694516
+      }
+    ]
+  }
+}
