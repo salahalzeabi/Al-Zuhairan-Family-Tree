@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useAuth } from '@/contexts/SupabaseAuthContext';  // ✅ هذا هو الصحيح
+import { useAuth } from '@/contexts/SupabaseAuthContext';  
 
 function useQuery() {
   const { search } = useLocation();
@@ -14,7 +14,7 @@ const ResetPassword = () => {
   const token = q.get('token') || '';
   const [pw1, setPw1] = useState('');
   const [pw2, setPw2] = useState('');
-  const { updatePassword } = useAuth();   // ✅ نستخدم الدالة الجديدة
+  const { updatePassword } = useAuth();  
 
   const submit = async (e) => {
     e.preventDefault();
