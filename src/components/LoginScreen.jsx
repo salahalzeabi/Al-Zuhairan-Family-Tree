@@ -21,7 +21,7 @@ const LoginScreen = ({ onGuestLogin, onAdminLogin }) => {
     if (error) {
       toast({ title: 'فشل تسجيل الدخول', variant: 'destructive' });
     } else {
-      // ✅ لا تستخدم navigate هنا. خلّ App يتولى التوجيه وضبط isAdmin
+      
       onAdminLogin?.();
     }
   };
