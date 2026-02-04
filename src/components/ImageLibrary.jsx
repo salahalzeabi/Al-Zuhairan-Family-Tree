@@ -43,23 +43,23 @@ const ImageLibrary = ({
     try {
       const fileName = sanitizeFileName(file.name);
 
-      // رفع إلى باكت uploads
+     
       const { error: uploadError } = await supabase.storage
         .from("uploads")
         .upload(fileName, file, { cacheControl: "3600", upsert: false });
 
       if (uploadError) throw uploadError;
 
-      // جلب الرابط العام
+      
       const { data } = supabase.storage.from("uploads").getPublicUrl(fileName);
       const publicUrl = data?.publicUrl || "";
 
       toast({ title: "تم رفع الصورة بنجاح!" });
 
       if (typeof onMediaUpdate === "function") {
-        await onMediaUpdate(); // الأفضل لإعادة المزامنة من المصدر
+        await onMediaUpdate(); 
       } else {
-        setImages((prev) => [...prev, publicUrl]); // تحديث محلي عند الحاجة
+        setImages((prev) => [...prev, publicUrl]); 
       }
     } catch (err) {
       console.error("Upload error", err);
@@ -70,7 +70,7 @@ const ImageLibrary = ({
       });
     } finally {
       setUploading(false);
-      event.target.value = null; // reset input
+      event.target.value = null; 
     }
   };
 
@@ -78,13 +78,12 @@ const ImageLibrary = ({
     e.stopPropagation();
     if (!window.confirm("هل أنت متأكد من حذف هذه الصورة؟")) return;
 
-    // استخراج اسم الملف من الرابط العام
     const name = decodeURIComponent(
       imgSrcToDelete.split("/").pop().split("?")[0]
     );
 
     if (!name) {
-      // مسار محلي من الأصول
+      
       setImages((prev) => prev.filter((i) => i !== imgSrcToDelete));
       toast({ title: "تم حذف الصورة (محليًا).", variant: "destructive" });
       return;
