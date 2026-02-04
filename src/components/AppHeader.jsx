@@ -16,7 +16,6 @@ const AppHeader = ({
 }) => {
   return (
     <header className="sticky top-0 z-30 p-4 flex justify-between items-center bg-black/30 backdrop-blur-lg border-b border-white/10">
-      {/* اليسار: زر القائمة + شارة المسؤول */}
       <div className="flex items-center gap-3">
         <Button
           variant="ghost"
@@ -56,7 +55,6 @@ const AppHeader = ({
         </h1>
       </div>
 
-      {/* اليمين: أدوات الزوم */}
       <div className="flex items-center gap-2 bg-white/10 rounded-xl px-2 py-1">
         <Button
           type="button"
