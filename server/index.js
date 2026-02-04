@@ -229,7 +229,7 @@ app.post('/api/auth/signup', async (req, res) => {
   res.json({ user: { id: user.id, email: user.email, username: user.username } });
 });
 
-// تسجيل دخول
+
 app.post('/api/auth/signin', async (req, res) => {
   const { email, password } = req.body || {};
   const db = readDB();
