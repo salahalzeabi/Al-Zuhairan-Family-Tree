@@ -16,7 +16,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ====== ملفات الرفع (صور) ======
 const UPLOAD_DIR = path.resolve(__dirname, '../public/uploads');
 fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 app.use('/uploads', express.static(UPLOAD_DIR));
