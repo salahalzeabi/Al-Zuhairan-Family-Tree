@@ -63,7 +63,7 @@ const Sidebar = ({
       document.removeEventListener("fullscreenchange", fullscreenChangeHandler);
   }, [toast]);
 
-  // Updated button classes for better visibility as per the image
+
   const buttonClasses =
     "w-full flex justify-between items-center text-lg py-4 px-4 bg-gray-800 hover:bg-blue-700 text-white rounded-xl";
   const primaryButtonClasses =
@@ -90,17 +90,14 @@ const Sidebar = ({
       </div>
 
       <div className="flex flex-col gap-4">
-        {/* <Button onClick={onResetToRoot} className={buttonClasses}>
-                    <span>العودة للجد الأول</span>
-                    <Users className="h-5 w-5" />
-                </Button> */}
+
         <Button
           onClick={onShowFamilyImage}
           className={buttonClasses}
           type="button"
         >
           <span>عرض شجرة العائلة</span>
-          {/* <TreeDeciduous className="h-5 w-5" /> */}
+
           <img
             src="/assets/members/tree_icon.svg"
             className="h-10 w-10 icon"
@@ -118,13 +115,7 @@ const Sidebar = ({
         </Button>
         {isAdmin && (
           <>
-            {/*             <Button
-              onClick={() => onOpenMediaLibrary("logo")}
-              className={buttonClasses}
-            >
-              <span>تغيير شعار العائلة</span>
-              <UploadCloud className="h-5 w-5" />
-            </Button> */}
+
             <Button onClick={onOpenRenameTree} className={buttonClasses}>
               <span>تغيير اسم الشجرة</span>
               <Pencil className="h-5 w-5" />
