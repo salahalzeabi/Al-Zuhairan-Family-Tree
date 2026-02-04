@@ -18,7 +18,6 @@ import {
 import { useFamilyTree } from "@/hooks/useFamilyTree";
 import { Maximize2, RotateCw, Download, Image as ImageIcon, Scan } from "lucide-react";
 
-// === خطوط العنوان المتاحة (مثل الصفحة الرئيسية) ===
 const TITLE_FONTS = [
   { key: "Cairo",       label: "Cairo (افتراضي)",      css: "'Cairo', sans-serif" },
   { key: "DecoThuluth", label: "ثلث (DecoThuluth)",    css: "'DecoThuluth','Cairo',sans-serif" },
@@ -31,7 +30,6 @@ export default function FamilyImagePage({ isAdmin = false, onLogout }) {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // نوع خط العنوان (نفس تخزين الصفحة الرئيسية)
 const [titleFontKey, setTitleFontKey] = useState(
   () => localStorage.getItem("titleFontKey") || "Cairo"
 );
@@ -39,12 +37,11 @@ const titleFontCss =
   TITLE_FONTS.find(f => f.key === titleFontKey)?.css || TITLE_FONTS[0].css;
 
 
-  // صورة الشجرة (يمكن تغييرها من المكتبة)
+  
   const [familyImage, setFamilyImage] = useState(
     () => localStorage.getItem("familyImage") || "/assets/members/family_tree.jpg"
   );
 
-  // زوم + دوران
   const [zoom, setZoom] = useState(() => {
     const v = Number(localStorage.getItem("imageZoom"));
     return Number.isFinite(v) && v > 0 ? v : 1;
@@ -55,8 +52,7 @@ const titleFontCss =
 
   const [rotation, setRotation] = useState(0); // 0/90/180/270
 
-  // مراجع/قياسات
-  const stageRef = useRef(null); // الحاوية التي تحتوي أشرطة التمرير
+  const stageRef = useRef(null); 
   const imgRef = useRef(null);
   const [imgNaturalWidth, setImgNaturalWidth] = useState(null);
   const [imgNaturalHeight, setImgNaturalHeight] = useState(null);
@@ -86,14 +82,14 @@ const titleFontCss =
     setRotation(0);
   };
 
-  // عجلة الفأرة للتكبير/التصغير
+  
   const onWheel = (e) => {
     e.preventDefault();
     if (e.deltaY > 0) handleZoomOut();
     else handleZoomIn();
   };
 
-  // سحب لتحريك (نحرّك scroll بدلاً من translate)
+  
   const [dragging, setDragging] = useState(false);
   const dragStartRef = useRef({ x: 0, y: 0 });
   const scrollStartRef = useRef({ left: 0, top: 0 });
@@ -116,10 +112,10 @@ const titleFontCss =
   };
   const endDrag = () => setDragging(false);
 
-  // تدوير
+  
   const rotateClockwise = () => setRotation((r) => (r + 90) % 360);
 
-  // ملاءمة العرض (نراعي الدوران: عند 90/270 نستخدم الارتفاع كعرض فعلي)
+  
   const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
   const fitToWidth = () => {
     if (!stageRef.current || !imgNaturalWidth || !imgNaturalHeight) return;
@@ -127,12 +123,11 @@ const titleFontCss =
     const baseWidth = rotation % 180 === 0 ? imgNaturalWidth : imgNaturalHeight;
     const nextZoom = clamp(containerWidth / baseWidth, MIN_ZOOM, MAX_ZOOM);
     setZoom(nextZoom);
-    // نُرجِع التمرير لليسار/الأعلى
+    
     stageRef.current.scrollLeft = 0;
     stageRef.current.scrollTop = 0;
   };
 
-  // ملء الشاشة
   const toggleFullscreen = async () => {
     const el = stageRef.current;
     if (!el) return;
@@ -140,7 +135,6 @@ const titleFontCss =
     else await document.exitFullscreen();
   };
 
-  // تنزيل الصورة
   const downloadImage = () => {
     const a = document.createElement("a");
     a.href = familyImage;
@@ -155,7 +149,7 @@ const titleFontCss =
     () => localStorage.getItem("treeName") || "شجرة عائلة الزهيران"
   );
 
-  // حوار إعادة تسمية
+
   const [renameOpen, setRenameOpen] = useState(false);
   const [pendingName, setPendingName] = useState(title);
   const openRenameDialog = () => {
@@ -200,19 +194,14 @@ const titleFontCss =
     setMediaSelectionMode(null);
   };
 
-  // خلفية الصفحة
-/*   const isImageBackground =
-    background?.startsWith("data:image") ||
-    background?.startsWith("http") ||
-    background?.startsWith("/assets/"); */
 
   const isImageBackground = (() => {
   if (!background) return false;
-  if (/^data:image/.test(background)) return true;         // data URI
-  if (/^https?:\/\//.test(background)) return true;        // روابط http/https
-  if (background.startsWith('/assets/')) return true;      // الأصول المدمجة
-  if (background.startsWith('/uploads/')) return true;     // ← المهم لمسارك المحلي
-  return /\.(png|jpe?g|webp|gif|svg)$/i.test(background);  // مسارات تنتهي بامتداد صورة
+  if (/^data:image/.test(background)) return true;         
+  if (/^https?:\/\//.test(background)) return true;        
+  if (background.startsWith('/assets/')) return true;      
+  if (background.startsWith('/uploads/')) return true;     
+  return /\.(png|jpe?g|webp|gif|svg)$/i.test(background);  
 })();
 
 
@@ -221,7 +210,6 @@ const titleFontCss =
     : {};
   const backgroundClass = !isImageBackground && background ? background : "bg-slate-900";
 
-  // التقاط أبعاد الصورة الطبيعية
   const onImgLoad = () => {
     if (imgRef.current) {
       setImgNaturalWidth(imgRef.current.naturalWidth || null);
@@ -229,7 +217,6 @@ const titleFontCss =
     }
   };
 
-  // اختصارات لوحة المفاتيح
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "+") handleZoomIn();
@@ -279,7 +266,6 @@ const titleFontCss =
         )}
       </AnimatePresence>
 
-      {/* شريط الأدوات (وسط) */}
       <div className="p-4 flex flex-wrap items-center justify-center gap-2 max-w-6xl mx-auto">
         <div className="flex flex-wrap gap-2 mx-auto">
           <Button
@@ -362,7 +348,7 @@ const titleFontCss =
           onMouseLeave={endDrag}
 
         >
-          {/* نُكبّر بتغيير الأبعاد الفعلية للصورة، ونبقي الدوران فقط */}
+      
           <img
             ref={imgRef}
             src={familyImage}
@@ -383,7 +369,6 @@ const titleFontCss =
         </div>
       </div>
 
-      {/* حوار تغيير اسم الشجرة */}
       {renameOpen && (
   <AlertDialog open onOpenChange={setRenameOpen}>
     <AlertDialogContent dir="rtl" className="text-right">
@@ -396,7 +381,6 @@ const titleFontCss =
         </AlertDialogDescription>
       </AlertDialogHeader>
 
-      {/* حقل الاسم */}
       <div className="mt-2">
         <input
           value={pendingName}
@@ -407,11 +391,9 @@ const titleFontCss =
         />
       </div>
 
-      {/* اختيار نوع الخط */}
       <div className="mt-4">
         <label className="block mb-2 text-slate-300">نوع الخط</label>
 
-        {/* حاوية الانتقاء + السهم */}
         <div className="relative group">
           <select
             value={titleFontKey}
@@ -428,7 +410,6 @@ const titleFontCss =
             ))}
           </select>
 
-          {/* سهم ينعكس عند الفتح */}
           <svg
             className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/80
                        transition-transform duration-200 group-focus-within:rotate-180"
@@ -444,7 +425,6 @@ const titleFontCss =
           </svg>
         </div>
 
-        {/* معاينة فورية */}
         <div className="mt-3 p-3 rounded-lg bg-slate-900/40">
           <span className="text-slate-200">المعاينة: </span>
           <b style={{ fontFamily: titleFontCss }} className="text-xl">
@@ -477,7 +457,6 @@ const titleFontCss =
 )}
 
 
-      {/* مكتبة الوسائط */}
       <MediaLibraryDialog
         open={mediaOpen}
         onOpenChange={setMediaOpen}
