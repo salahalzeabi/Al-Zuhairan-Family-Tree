@@ -1,4 +1,3 @@
-// src/contexts/SupabaseAuthContext.jsx
 import React, {
   createContext,
   useContext,
@@ -31,7 +30,6 @@ export const AuthProvider = ({ children }) => {
     const getSession = async () => {
       try {
         const res = await supabase.auth.getSession();
-        // supabase v2: res = { data: { session }, error }
         const session = res?.data?.session ?? null;
         handleSession(session);
       } catch (err) {
@@ -42,19 +40,17 @@ export const AuthProvider = ({ children }) => {
 
     getSession();
 
-    // onAuthStateChange returns { data: { subscription } } in some sdk versions
+
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
       handleSession(session);
     });
 
-    // keep reference for cleanup (some sdk versions put subscription in data.subscription)
     sub = data?.subscription ?? data;
 
     return () => {
       try {
         if (sub && typeof sub.unsubscribe === 'function') sub.unsubscribe();
       } catch (err) {
-        // ignore cleanup errors
       }
     };
   }, [handleSession]);
@@ -141,9 +137,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, [toast]);
 
-  // === NEW: requestPasswordReset ===
-  // This sends the "reset password" email (Supabase v2 API)
-  // optionally pass { redirectTo } in opts to set where the user lands after reset
+
   const requestPasswordReset = useCallback(
     async (email, opts = {}) => {
       try {
@@ -183,7 +177,6 @@ export const AuthProvider = ({ children }) => {
     [toast]
   );
 
-  // تحديث كلمة المرور بعد الضغط على الرابط
 const updatePassword = useCallback(
   async (newPassword) => {
     try {
@@ -220,7 +213,7 @@ const updatePassword = useCallback(
   signIn,
   signOut,
   requestPasswordReset,
-  updatePassword,   // ⬅️ أضف هذا هنا
+  updatePassword,   ا
 }), [user, session, loading, signUp, signIn, signOut, requestPasswordReset, updatePassword]);
 
 
