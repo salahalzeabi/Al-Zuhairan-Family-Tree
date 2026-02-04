@@ -18,9 +18,9 @@ const buildTree = (members) => {
   return tree.length > 0 ? tree[0] : null;
 };
 
-// اضبط الباكِت/المجلد حسب إعداداتك
+
 const STORAGE_BUCKET = 'uploads';
-const STORAGE_FOLDER = ''; // مثال: 'images' لو تستخدم مجلد داخل الباكِت
+const STORAGE_FOLDER = ''; 
 
 const DEFAULT_IMAGES = [
   '/assets/members/default.svg'
@@ -60,7 +60,7 @@ export const useFamilyTree = () => {
         setExpandedNodes(new Set([rootId]));
       }
     } else {
-      // إنشاء جذر عند أول تشغيل
+      
       const { data: newRoot, error: insertError } = await supabase
         .from('family_members')
         .insert({ name: 'عبدالعزيز', image_url: '/assets/members/default.svg' })
@@ -81,7 +81,7 @@ export const useFamilyTree = () => {
   const fetchSettings = useCallback(async () => {
     const { data, error } = await supabase.from('settings').select('*');
 
-    // قد لا يكون جدول settings موجودًا — تجاهل الخطأ بدون كسر التطبيق
+    
     if (error) {
       console.warn('Settings table fetch skipped:', error.message || error);
       return;
