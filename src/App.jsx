@@ -110,20 +110,20 @@ const [titleFontKey, setTitleFontKey] = useState(
   () => localStorage.getItem("titleFontKey") || "Cairo"
 );
 
-// CSS الفعلي للخط المختار (نستخدمه في المعاينة والهيدر)
+
 const titleFontCss =
   TITLE_FONTS.find(f => f.key === titleFontKey)?.css || TITLE_FONTS[0].css;
 
-// ✨ عدّل دالة الحفظ لتسجل نوع الخط كذلك
+
 const saveNewName = () => {
   const v = pendingName.trim();
   if (!v) return;
 
-  // ✅ الاسم الصحيح للحالة هنا هو treeName
+ 
   setTreeName(v);
   localStorage.setItem("treeName", v);
 
-  // حفظ اختيار الخط
+  
   localStorage.setItem("titleFontKey", titleFontKey);
 
   setRenameOpen(false);
@@ -219,7 +219,7 @@ const saveNewName = () => {
 const openMediaLibrary = (target) => {
   if (!isAdmin) return;
   setMediaLibraryTarget(target);
-  fetchMedia();                 // << اجلب القائمة هنا
+  fetchMedia();                
   setMediaLibraryOpen(true);
   setSidebarOpen(false);
 };
@@ -248,18 +248,15 @@ const openMediaLibrary = (target) => {
     setDialogOpen(false);
   };
 
-/*   const isImageBackground =
-    background.startsWith("data:image") ||
-    background.startsWith("http") ||
-    background.startsWith("/assets/"); */
+
 
     const isImageBackground = (() => {
   if (!background) return false;
-  if (/^data:image/.test(background)) return true;         // data URI
-  if (/^https?:\/\//.test(background)) return true;        // روابط http/https
+  if (/^data:image/.test(background)) return true;         
+  if (/^https?:\/\//.test(background)) return true;        
   if (background.startsWith('/assets/')) return true;      
   if (background.startsWith('/uploads/')) return true;     
-  return /\.(png|jpe?g|webp|gif|svg)$/i.test(background);  // مسارات تنتهي بامتداد صورة
+  return /\.(png|jpe?g|webp|gif|svg)$/i.test(background);  
 })();
 
 
@@ -276,10 +273,6 @@ const openMediaLibrary = (target) => {
   const backgroundClass = !isImageBackground ? background : "";
 
 
-
-
-
-    // زوم الشجرة
 const [zoom, setZoom] = useState(() => {
   const v = Number(localStorage.getItem("treeZoom"));
   return Number.isFinite(v) && v > 0 ? v : 1;
@@ -358,16 +351,16 @@ const handleZoomReset = () => {
     titleFont={titleFontCss}      
         />
 
-        {/*  حاوية تمرير للشجرة (أفقي + عمودي)  */}
+   
         <div
           ref={viewportRef}
           className="tree-viewport relative z-0 pt-8 px-8 text-center overflow-x-auto overflow-y-auto min-h-[calc(100vh-80px)]"
         >
-          {/* كانفس يتمدّد بعرض المحتوى */}
+       
           <div className="tree-canvas inline-block min-w-max"
           style={{
       transform: `scale(${zoom})`,
-      transformOrigin: "top center",   // أو "center" لو تفضّل التكبير من المنتصف
+      transformOrigin: "top center",   
       willChange: "transform",
     }}>
             <div className="inline-block">
@@ -400,7 +393,7 @@ const handleZoomReset = () => {
             </div>
           </div>
         </div>
-        {/* نهاية حاوية التمرير */}
+    
 
         <AnimatePresence>
           {sidebarOpen && (
@@ -419,8 +412,8 @@ const handleZoomReset = () => {
               onShowFamilyImage={handleShowFamilyImage} 
               onOpenRenameTree={openRenameDialog}
                 onLogout={() => {             
-    setSidebarOpen(false);       // اغلق القائمة
-    onLogout();                  // نادِ دالة الخروج القادمة من App
+    setSidebarOpen(false);       
+    onLogout();                  
   }}
    
             />
@@ -451,13 +444,7 @@ const handleZoomReset = () => {
           />
         )}
 
-      
 
-
-
-
-
-{/* حوار تغيير اسم الشجرة — يُركَّب فقط عند الفتح لمنع طبقة التعتيم الدائمة */}
 {renameOpen && (
   <AlertDialog open onOpenChange={setRenameOpen}>
   <AlertDialogContent dir="rtl" className="text-right">
@@ -470,7 +457,6 @@ const handleZoomReset = () => {
       </AlertDialogDescription>
     </AlertDialogHeader>
 
-    {/* حقل الاسم */}
     <div className="mt-2">
       <input
         value={pendingName}
@@ -481,11 +467,10 @@ const handleZoomReset = () => {
       />
     </div>
 
-    {/* اختيار نوع الخط */}
+
     <div className="mt-4">
   <label className="block mb-2 text-slate-300">نوع الخط</label>
 
-  {/* حاوية الانتقاء + السهم */}
   <div className="relative group">
     <select
       value={titleFontKey}
@@ -493,7 +478,7 @@ const handleZoomReset = () => {
       dir="rtl"
       className="w-full rounded-md border border-white/20 bg-slate-800 text-white pr-3 pl-10 py-2
                  focus:outline-none focus:ring-2 focus:ring-blue-500
-                 appearance-none"   // إخفاء السهم الافتراضي
+                 appearance-none"   
     >
       {TITLE_FONTS.map((f) => (
         <option key={f.key} value={f.key} style={{ fontFamily: f.css }}>
@@ -502,7 +487,6 @@ const handleZoomReset = () => {
       ))}
     </select>
 
-    {/* السهم المخصص: لأسفل افتراضيًا، ولأعلى عند الفتح */}
     <svg
       className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/80
                  transition-transform duration-200 group-focus-within:rotate-180"
@@ -510,7 +494,7 @@ const handleZoomReset = () => {
       fill="currentColor"
       aria-hidden="true"
     >
-      {/* شكل سهم لأسفل */}
+
       <path
         fillRule="evenodd"
         d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"
@@ -519,7 +503,6 @@ const handleZoomReset = () => {
     </svg>
   </div>
 
-  {/* معاينة فورية */}
   <div className="mt-3 p-3 rounded-lg bg-slate-900/40">
     <span className="text-slate-200">المعاينة: </span>
     <b style={{ fontFamily: titleFontCss }} className="text-xl">
@@ -619,7 +602,7 @@ function App() {
             />
           }
         />
-         {/* صفحات استعادة/تعيين كلمة المرور */}
+     
   <Route path="/forgot" element={<ForgotPassword />} />
   <Route path="/reset-password" element={<ResetPassword />} />
         <Route
