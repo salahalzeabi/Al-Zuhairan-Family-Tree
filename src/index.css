@@ -17,7 +17,7 @@ body {
   padding: 0;
   direction: rtl;
   text-align: right;
-  background-color: #0f172a; /* fallback */
+  background-color: #0f172a; 
   color: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -26,10 +26,6 @@ body {
 
 
 
-
-
-
-/* src/index.css */
 
 @font-face {
   font-family: 'DecoThuluth';
@@ -126,17 +122,15 @@ body {
 .overflow-y-auto::-webkit-scrollbar-thumb:hover{ background:rgba(212,175,55,1); }
 
 
-/* Scrollbar style — نفس الشكل في App */
 .tree-viewport {
-  /* Firefox */
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,.35) rgba(255,255,255,.08);
 }
 
-/* WebKit (Chrome/Edge/Safari) */
+
 .tree-viewport::-webkit-scrollbar {
-  width: 10px;    /* عمودي */
-  height: 10px;   /* أفقي */
+  width: 10px;   
+  height: 10px; 
 }
 
 .tree-viewport::-webkit-scrollbar-track {
@@ -147,7 +141,7 @@ body {
 .tree-viewport::-webkit-scrollbar-thumb {
   background: rgba(255,255,255,.35);
   border-radius: 9999px;
-  border: 2px solid transparent; /* يعطي سماكة جميلة */
+  border: 2px solid transparent;
   background-clip: padding-box;
 }
 
@@ -155,8 +149,6 @@ body {
   background: rgba(255,255,255,.55);
 }
 
-
-/* ===================== Tree connector lines (no gaps) ===================== */
 
 .children-container{
   --line-color: #d4af37;
@@ -225,7 +217,7 @@ body {
 
 
 .child-node:first-child:last-child::after{ display: none; }
-/* ========================================================================== */
+
 
 
 .tree-root{ direction: ltr; }
