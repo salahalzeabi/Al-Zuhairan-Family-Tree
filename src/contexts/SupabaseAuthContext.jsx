@@ -39,18 +39,16 @@ export const AuthProvider = ({ children }) => {
     };
 
     getSession();
-
-
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
       handleSession(session);
     });
-
     sub = data?.subscription ?? data;
 
     return () => {
       try {
         if (sub && typeof sub.unsubscribe === 'function') sub.unsubscribe();
       } catch (err) {
+
       }
     };
   }, [handleSession]);
@@ -213,7 +211,7 @@ const updatePassword = useCallback(
   signIn,
   signOut,
   requestPasswordReset,
-  updatePassword,   ا
+  updatePassword,   
 }), [user, session, loading, signUp, signIn, signOut, requestPasswordReset, updatePassword]);
 
 
