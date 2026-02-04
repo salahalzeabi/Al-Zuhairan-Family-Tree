@@ -28,7 +28,7 @@ const MediaLibraryDialog = ({
   const [uploadingFiles, setUploadingFiles] = useState([]);
 
   useEffect(() => {
-    // تنظيف روابط الـ blob عند الإغلاق/التغيير
+    
     return () => {
       uploadingFiles.forEach((f) => {
         if (f.preview) URL.revokeObjectURL(f.preview);
@@ -42,7 +42,7 @@ const MediaLibraryDialog = ({
     const files = Array.from(event.target.files || []);
     if (!files.length) return;
 
-    // تحقق من الملفات قبل الإرسال
+
     const MAX_MB = 5;
     for (const f of files) {
       if (!f.type.startsWith("image/")) {
@@ -57,7 +57,7 @@ const MediaLibraryDialog = ({
       }
     }
 
-    // بطاقات "جاري الرفع"
+
     const newUploadingFiles = files.map((file) => ({
       id: `${file.name}-${Date.now()}-${Math.random()}`,
       file,
@@ -67,7 +67,7 @@ const MediaLibraryDialog = ({
     event.target.value = null;
 
     try {
-      // ارفع كل ملف إلى باكت "uploads"
+      
       const uploadedNames = await Promise.all(
         files.map(async (file) => {
           const fileName = `${Date.now()}-${Math.random()
@@ -83,25 +83,23 @@ const MediaLibraryDialog = ({
 
           if (uploadError) throw uploadError;
 
-          // لو تحتاج الرابط العام مباشرةً:
-          // const { data: { publicUrl } } = supabase.storage.from("uploads").getPublicUrl(fileName);
-          // بإمكانك إرجاع publicUrl بدل fileName
+      
 
           return fileName;
         })
       );
 
-      // إزالة بطاقات الرفع المؤقتة
+  
       setUploadingFiles((prev) =>
         prev.filter((p) => !newUploadingFiles.some((n) => n.id === p.id))
       );
 
       toast({ title: `تم رفع ${uploadedNames.length} صورة بنجاح!` });
 
-      // إعادة جلب قائمة الصور من المخزن
+      
       onMediaUpdate?.();
     } catch (err) {
-      // تنظيف البطاقات المؤقتة عند الفشل
+      
       setUploadingFiles((prev) =>
         prev.filter((p) => !newUploadingFiles.some((n) => n.id === p.id))
       );
@@ -116,7 +114,7 @@ const MediaLibraryDialog = ({
   const handleDelete = async (e, imgSrcToDelete) => {
     e.stopPropagation();
     try {
-      // استخرج اسم الملف من الـ URL العام
+    
       const name = decodeURIComponent(
         imgSrcToDelete.split("/").pop().split("?")[0]
       );
@@ -259,19 +257,19 @@ const MediaLibraryDialog = ({
                 onClick={isSelectionMode ? () => onSelect?.(imgSrc) : undefined}
               >
 <div className="relative w-full h-full">
-  {/* الصورة الأصلية */}
+
   <img
     src={imgSrc}
     alt="media content"
     className="absolute inset-0 w-full h-full object-cover"
     onError={(e) => {
-      // أخفِ الأصلية وأظهر الافتراضية
+      
       e.currentTarget.style.display = "none";
       const fb = e.currentTarget.nextElementSibling;
       if (fb) fb.style.display = "block";
     }}
   />
-  {/* صورة fallback الافتراضية (مخفية مبدئياً) */}
+ 
   <img
     src="/assets/members/default.svg"
     alt="fallback"
