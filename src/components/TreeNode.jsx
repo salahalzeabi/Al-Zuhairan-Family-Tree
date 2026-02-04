@@ -18,7 +18,6 @@ const TreeNode = ({
   return (
     <div className="tree">
       <div className="tree-root">
-        {/* أعطينا كل بطاقة id ليسهّل التمرير للجذر لاحقًا */}
         <div id={`node-${member.id}`}>
           <motion.div
             layout
@@ -28,16 +27,16 @@ const TreeNode = ({
             className="relative group w-44 cursor-pointer"
             onClick={() => onClick(member.id)}
             onDoubleClick={(e) => {
-              // مهم: نوقف الانتشار حتى لا يشتغل onClick مع الدبل-كليك
+              
               e.stopPropagation();
               e.preventDefault();
-              onDoubleClick(member); // نرسل العضو للأب
+              onDoubleClick(member); 
             }}
           >
-            {/* Card */}
+
             <div className="mb-10 w-44 bg-gradient-to-br from-yellow-300 via-yellow-500 to-yellow-700 p-[5px] rounded-xl shadow-lg group-hover:shadow-yellow-400/50 group-hover:scale-105 transition-all">
               <div className="rounded-lg overflow-hidden bg-slate-800 flex flex-col h-64 w-full">
-                {/* الصورة */}
+   
                 <div className="relative flex-1">
                   <img
                     src={member.image_url || "/assets/members/default.svg"}
@@ -55,14 +54,12 @@ const TreeNode = ({
                   )}
                 </div>
 
-                {/* الاسم */}
                 <div className="h-10 bg-yellow-500 text-slate-900 font-bold tracking-wide flex items-center justify-center px-2">
                   {member.name}
                 </div>
               </div>
             </div>
 
-            {/* أزرار الإدارة */}
             {isAdmin && (
               <div className="absolute top-0 left-full ml-2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                 <button
@@ -95,7 +92,6 @@ const TreeNode = ({
               </div>
             )}
 
-            {/* زر التوسيع */}
             {hasChildren && (
               <div className="-bottom-8 absolute  inset-x-0 flex items-center justify-center">
                 <motion.div
@@ -109,7 +105,6 @@ const TreeNode = ({
           </motion.div>
         </div>
 
-        {/* الأطفال */}
         <AnimatePresence>
           {isExpanded && hasChildren && (
             <motion.div
